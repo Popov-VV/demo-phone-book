@@ -10,32 +10,13 @@ You may change params in .env file.
 
 ```
 docker-compose build
-docker-compose up -d
+docker-compose up
+```
 
+After composer and npm installers return exit code 0 and end work, open new tab and run migration for db:
+```
 docker-compose exec app bash 
-  cp .env.example .env
-```
-composer and npm installers was run to background, and if you next command doesn't work, please wait
-
-```
-  php artisan key:generate
   php artisan migrate --seed
-
-  cd ../web-app
-  npm run build
-
-  exit
-```
-
-!Notice: if was error in build with sass package run this command 
-
-```
-npm rebuild node-sass
-```
-
-and rerun 
-```
-npm run build 
 ```
 
 

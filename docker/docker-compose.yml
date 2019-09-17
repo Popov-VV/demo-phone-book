@@ -61,16 +61,19 @@ services:
     volumes:
       - ${APP_PATH_HOST_API}:${APP_PATH_CONTEINER_API}
     working_dir: ${APP_PATH_CONTEINER_API}
-    command: composer install
+    command: bash -c "composer update 
+                      && cp .env.example .env
+                      && php artisan key:generate"
 
   node:
-    image: node:alpine
+    image: node
     volumes:
       - ${APP_PATH_HOST_API}:${APP_PATH_CONTEINER_API}
       - ${APP_PATH_HOST_WEB}:${APP_PATH_CONTEINER_WEB}
     working_dir: ${APP_PATH_CONTEINER_WEB}
-    command: npm install
-
+    command: bash -c "npm update 
+                      && npm rebuild node-sass
+                      && npm run build"
 
 networks:
   network:
