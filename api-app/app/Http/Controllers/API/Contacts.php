@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Exception;
 use App\Models\Card;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -16,48 +17,67 @@ class Contacts extends Controller
 
     public function create(Request $request)
     {
+        $new_card = $request->card;
         $card = new Card;
-        $card->first_name = $request->first_name;
-        $card->last_name = $request->last_name;
+        $card->first_name = $new_card['first_name'];
+        $card->last_name = $new_card['last_name'];
 
         $card->save();
 
-        if ($request->contacts) {
-            foreach ($request->contacts as $contact) {
-                $this->createNewContact($card, $contact);
+        $contacts = [];
+
+        if ($new_card['contacts']) {
+            foreach ($new_card['contacts'] as $contact) {
+                $contact = $this->createNewContact($card, $contact);
+                array_push($contacts, $contact);
             }
         }
 
-        return 1;
+        if (isset($card['contacts'])) {
+            $card['contacts'] = $contacts;
+        }
+
+        return $card;
     }
 
     public function updateCard(Request $request)
     {
-        $card = Card::find($request['id']);
+        $new_card = $request->card;
+
+        $card = Card::find($new_card['id']);
 
         if (isset($card)) {
-            $card->first_name = $request['first_name'];
-            $card->last_name = $request['last_name'];
+            $card->first_name = $new_card['first_name'];
+            $card->last_name = $new_card['last_name'];
             $card->save();
 
-            if ($request->contacts) {
-                foreach ($request->contacts as $new_contact) {
+            $contacts = [];
+
+            if ($new_card['contacts']) {
+
+                foreach ($new_card['contacts'] as $new_contact) {
 
                     if (isset($new_contact['id']) && Contact::find($new_contact['id'])) {
 
                         $contact = Contact::find($new_contact['id']);
-
                         $contact->type = $new_contact['type'];
                         $contact->contact = $new_contact['contact'];
                         $contact->save();
 
+                        array_push($contacts, $contact);
+
                     } else {
-                        $this->createNewContact($card, $new_contact);
+                        $contact = $this->createNewContact($card, $new_contact);
+                        array_push($contacts, $contact);
                     }
                 }
             }
 
-            return 1;
+            if (isset($card['contacts'])) {
+                $card['contacts'] = $contacts;
+            }
+
+            return $card;
 
         } else {
             return 'cards with id: ' . $request['id'] . ' not found';
@@ -82,7 +102,8 @@ class Contacts extends Controller
         $new_contact->type = $contact['type'];
         $new_contact->contact = $contact['contact'];
 
-        return $card->contacts()->save($new_contact);
+        $card->contacts()->save($new_contact);
+        return $new_contact;
     }
 
 

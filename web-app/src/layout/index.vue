@@ -8,6 +8,7 @@
 
   notifications(position="bottom right")
 
+  .preloader(v-if = "$store.state.loading")
 
 </template>
 
@@ -20,7 +21,6 @@ export default {
   created: ->
     @$store.dispatch 'init'
 
-
 }
 
 </script>
@@ -28,5 +28,19 @@ export default {
 <style lang="sass">
 
 #app
+
+
+.preloader
+  position: fixed
+  z-index: 10000
+  width: 100%
+  height: 100vh
+  top: 0
+  left: 0
+  background-color: rgba(0,0,0, .3)
+  background-image: url("../assets/loader.gif")
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 80px
 
 </style>

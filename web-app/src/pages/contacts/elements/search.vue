@@ -17,8 +17,12 @@ export default {
   data: ->
     text: null
 
+  mounted: ->
+    @text = @$store.state.searchText
+
   methods:
     clear: ->
+      @$store.commit 'searchText', ''
       @text = ''
 
   watch:
@@ -65,6 +69,7 @@ export default {
     .not-clear
       &:after
         content: ''
+        cursor: pointer
         position: absolute
         right: .7rem
         top: .3rem

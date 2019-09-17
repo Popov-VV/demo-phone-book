@@ -68,7 +68,7 @@ services:
       - ${APP_PATH_HOST_API}:${APP_PATH_CONTEINER_API}
       - ${APP_PATH_HOST_WEB}:${APP_PATH_CONTEINER_WEB}
     working_dir: ${APP_PATH_CONTEINER_API}
-    command: npm install
+    command: npm install && npm run build
 
 networks:
   network:

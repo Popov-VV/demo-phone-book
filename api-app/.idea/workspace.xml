@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e9ea243-df4d-471c-8713-ad40d9457ff3" name="Default Changelist" comment="" />
+    <list default="true" id="7e9ea243-df4d-471c-8713-ad40d9457ff3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../web-app/src/assets/loader.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/Contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/Contacts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker/docker/nginx/api-app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../docker/docker/nginx/api-app.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/common/components/formEditContact.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/common/components/formEditContact.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/config.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/config.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/layout/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/layout/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/pages/contacts/elements/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/pages/contacts/elements/list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/pages/contacts/elements/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/pages/contacts/elements/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/store/store.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/store/store.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-app/src/styles/settings/settings.sass" beforeDir="false" afterPath="$PROJECT_DIR$/../web-app/src/styles/settings/settings.sass" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +30,9 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="api-app" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -107,6 +124,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1QpdFX0q7WexVnogf3B4SnKYbWY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -145,10 +163,27 @@
       <updated>1568471367395</updated>
       <workItem from="1568471368644" duration="8034000" />
       <workItem from="1568540952052" duration="9051000" />
+      <workItem from="1568619191409" duration="16000" />
+      <workItem from="1568676303802" duration="1389000" />
+      <workItem from="1568703719409" duration="33000" />
+      <workItem from="1568719658939" duration="7281000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

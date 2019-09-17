@@ -11,7 +11,7 @@ export default new Vuex.Store
     example: example
 
   state:
-    loading: true
+    loading: false
     cards: null
     activeCard: null
     cardPreview: null
@@ -19,6 +19,12 @@ export default new Vuex.Store
     searchText: ''
 
   mutations:
+    loadingStart: (state) ->
+      state.loading = true
+
+    loadingEnd: (state) ->
+      state.loading = false
+
     searchText: (state, payload) ->
       state.searchText = payload
 
@@ -31,6 +37,21 @@ export default new Vuex.Store
     cards: (state, payload) ->
       state.cards = payload
 
+    addCard: (state, payload) ->
+      state.cards.push payload
+
+    deleteCards: (state, payload) ->
+      newCards = _.cloneDeep state.cards
+
+      for card, i in newCards
+        if card.id == payload.id
+          newCards.splice(i, 1)
+          break
+
+      state.cards = newCards
+      state.activeCard = null
+      state.cardPreview = null
+
   getters:
     filteredCards: (state) ->
       query = new RegExp( state.searchText, 'gi' )
@@ -42,6 +63,7 @@ export default new Vuex.Store
 
   actions:
     init: ({ commit }) ->
+      commit 'loadingStart'
       axios.post '/api/contact/list'
         .then (response) =>
           commit 'cards', response.data
@@ -49,26 +71,90 @@ export default new Vuex.Store
         .catch (e) ->
           console.log e
 
-    addNewCard: ({state}, card) =>
-      console.log card
+        .finally ->
+          commit 'loadingEnd'
 
-      router.push({name: 'contacts'})
+    addNewCard: ({state, commit}, card) =>
+      commit 'loadingStart'
+      axios.post '/api/contact/create',
+          card: card
+        .then (response) =>
+          if response.data.id
+            commit 'addCard', response.data
+            router.push({name: 'contacts'})
 
-    updateCard: ({state}, card) ->
-      console.log card
+            Vue.notify
+              type: 'success'
+              title: 'Successful',
+              text: 'New Contact: ' + card.first_name + ' ' + card.last_name + ' '
 
-      router.push({name: 'contacts'})
+        .catch (e) ->
+          console.log e
 
-    deleteCard: ({state}, card) ->
-      console.log card
+        .finally ->
+          commit 'loadingEnd'
 
-    deleteContact: ({state}, contact) ->
-      console.log contact
 
-      Vue.notify
-        type: 'warn'
-        title: 'Delete Successful',
-        text: 'Contact ' + card.first_name + ' ' + card.last_name + ' '
+
+    updateCard: ({state, commit}, card) ->
+      commit 'loadingStart'
+      axios.post '/api/contact/update-card',
+          card: card
+        .then (response) =>
+          if response.data.id
+            commit 'deleteCards', response.data
+            commit 'addCard', response.data
+            router.push({name: 'contacts'})
+
+            Vue.notify
+              type: 'success'
+              title: 'Successful',
+              text: 'Update Contact: ' + card.first_name + ' ' + card.last_name + ' '
+
+        .catch (e) ->
+          console.log e
+
+        .finally ->
+          commit 'loadingEnd'
+
+    deleteCard: ({state, commit}, card) ->
+      commit 'loadingStart'
+      axios.post '/api/contact/delete-card',
+          id: card.id
+        .then (response) =>
+          if response.data
+            commit 'deleteCards', card
+
+            Vue.notify
+              type: 'success'
+              title: 'Successful',
+              text: 'Delete Contact: ' + card.first_name + ' ' + card.last_name + ' '
+
+        .catch (e) ->
+          console.log e
+
+        .finally ->
+          commit 'loadingEnd'
+
+
+    deleteContact: ({state, commit}, contactId) ->
+      commit 'loadingStart'
+      axios.post '/api/contact/delete-contact',
+          id: contactId
+        .then (response) =>
+          if response.data
+            return true
+
+            Vue.notify
+              type: 'success'
+              title: 'Successful'
+
+        .catch (e) ->
+          console.log e
+
+        .finally ->
+          commit 'loadingEnd'
+
 
     setActiveFirstContact: ({ commit, getters }) ->
       commit 'activeCard', _.first getters.filteredCards

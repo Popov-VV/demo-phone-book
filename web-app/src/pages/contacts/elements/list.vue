@@ -3,7 +3,7 @@
 .list.block
   .wrapper.scrollbar
     .card(v-for = "card, i in $store.getters.filteredCards"
-          :key = "'card_' + card.id"
+          :key = "'card_' + i"
           @mouseover = "setCardPreview(card)"
           @mouseout = "clearCardPreview()"
           :class = "{ 'active': $store.state.activeCard == card }")
@@ -13,7 +13,9 @@
 
       control-card(:card = "card")
 
-
+    .no-card(v-if = "$store.getters.filteredCards.length == 0 && $store.state.loading == false")
+      p Sorry, contact was not found
+      span please, change request
 
 </template>
 
@@ -67,7 +69,10 @@ export default {
     &:hover
       background-color: rgba(50,50,50, .1)
 
-
+  .no-card
+    margin-top: 5rem
+    text-align: center
+    font-size: 1.2rem
 
 
 </style>

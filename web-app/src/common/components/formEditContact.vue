@@ -20,8 +20,7 @@
               :placeholderActive = "contact.type"
               v-validate = "$v.card.contacts.$each[i]")
 
-      .delete-contact(v-if = "card.contacts.length > 1"
-                      @click = "deleteContact(i)")
+      .delete-contact(@click = "deleteContact(i)")
 
   .control
     .add-phone(@click = "addPhone()") Add phone
@@ -73,11 +72,13 @@ export default Vue.component 'form-edit-contact', {
         contact: null
 
     deleteContact: (index) ->
-      console.log asdas = _.cloneDeep @card.contacts
-      @card.contacts.splice index, 1
-      console.log @card.contacts
+      if not @card.contacts[index].id
+        @card.contacts.splice index, 1
 
-
+      else
+        @$store.dispatch 'deleteContact', @card.contacts[index].id
+          .then =>
+            @card.contacts.splice index, 1
 
     save: ->
       @submitStatus = true
