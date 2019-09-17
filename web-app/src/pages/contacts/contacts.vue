@@ -2,15 +2,17 @@
 
 .contacts
   .wrapper
-    //.control
+    .control
       search
 
-      .new-contact
+      router-link.button(:to = { name: 'add-contact' }) Add Contact
 
     .content
       list-card
 
-      preview-contact(:card = "card")
+      preview-contact
+
+  delete-card
 
 
 </template>
@@ -24,10 +26,6 @@ export default {
     listCard: require('./elements/list.vue').default
     previewContact: require('./elements/preview.vue').default
     search: require('./elements/search.vue').default
-
-  data: ->
-    card: ''
-
 
 }
 
@@ -43,16 +41,17 @@ export default {
 
   .wrapper
     display: flex
+    flex-direction: column
     justify-content: center
+    align-items: center
     width: 70%
 
     .control
       display: flex
       justify-content: space-between
+      width: 100%
 
-      .search
-
-      .new-contact
+      margin-bottom: 1.5rem
 
     .content
       display: flex
@@ -60,8 +59,7 @@ export default {
       justify-content: space-between
       flex-grow: 1
 
-
-
+      width: 100%
 
 
 </style>

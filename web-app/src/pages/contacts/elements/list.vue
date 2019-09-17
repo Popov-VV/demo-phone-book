@@ -5,6 +5,7 @@
     .card(v-for = "card, i in $store.getters.filteredCards"
           :key = "'card_' + card.id"
           @mouseover = "setCardPreview(card)"
+          @mouseout = "clearCardPreview()"
           :class = "{ 'active': $store.state.activeCard == card }")
 
       .name(@click = "setActiveCard(card)") {{ card.last_name }} {{ card.first_name }}
@@ -23,6 +24,9 @@ export default {
   methods:
     setCardPreview: (card) ->
       @$store.state.cardPreview = card if not @$store.state.activeCard
+
+    clearCardPreview: (card) ->
+      @$store.state.cardPreview = null if not @$store.state.activeCard
 
     setActiveCard: (card) ->
       if @$store.state.activeCard isnt card

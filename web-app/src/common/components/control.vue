@@ -1,8 +1,8 @@
 <template lang="pug">
 
 .control(:class = "{ 'large': large }")
-  .edit.element(@click = "test()")
-  .delete.element
+  router-link.edit.element(:to = "{ name: 'edit-contact', params: { id: card.id } }")
+  .delete.element(@click = "$modal.show('deleteCard', { card: card })")
 
 </template>
 
@@ -17,9 +17,6 @@ export default Vue.component 'control-card', {
     'card'
   ]
 
-  methods:
-    test: ->
-      console.log(@card)
 
 }
 
@@ -72,11 +69,11 @@ export default Vue.component 'control-card', {
   .edit
     &:before
       top: .4rem
-      background-image: url("../assets/icons/edit.png")
+      background-image: url("../../assets/icons/edit.png")
 
   .delete
     &:before
-      background-image: url("../assets/icons/delete.png")
+      background-image: url("../../assets/icons/remove.png")
 
 
 

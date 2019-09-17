@@ -1,23 +1,24 @@
 <template lang="pug">
 
-.preview.block(v-if = "card")
-  .info.string
-    span First Name:
-    .first_name.value {{ card.first_name }}
+.preview.block
+  .wrapper(v-if = "card")
+    .info.string
+      span First Name:
+      .first_name.value {{ card.first_name }}
 
-  .info.string
-    span Last Name:
-    .last_name.value {{ card.last_name }}
+    .info.string
+      span Last Name:
+      .last_name.value {{ card.last_name }}
 
-  .contact
-    .info.column(v-for = "contact in card.contacts")
-      span {{ contact.type }}:
-      .last_name.value {{ contact.contact }}
+    .contact
+      .info.column(v-for = "contact in card.contacts")
+        span {{ contact.type }}:
+        .last_name.value {{ contact.contact }}
 
-      .delete-element
+        .delete-element
 
-  control-card.fixed-position-control(:large = "true"
-                                      :card = "card")
+    control-card.fixed-position-control(:large = "true"
+                                        :card = "card")
 
 </template>
 

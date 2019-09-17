@@ -5,6 +5,10 @@
 
   router-view
 
+
+  notifications(position="bottom right")
+
+
 </template>
 
 <script lang="coffee">
