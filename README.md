@@ -27,6 +27,17 @@ composer and npm installers was run to background, and if you next command doesn
   exit
 ```
 
+!Notice: if was error in build with sass package run this command 
+
+```
+npm rebuild node-sass
+```
+
+and rerun 
+```
+npm run build 
+```
+
 
 Edit you hosts file and add:
 ```
