@@ -36,6 +36,16 @@ Edit you hosts file and add:
 
 Open http://web-app.dev
 
+and you so open adminer DB in localhost:9999
+
+select postgresDb
+enter:
+```
+username: demoUser
+password: passwordUser
+db name: demoApp
+```
+
 
 
 
