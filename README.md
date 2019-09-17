@@ -13,7 +13,10 @@ docker-compose build
 docker-compose up -d
 
 docker-compose exec app bash 
+```
+composer was run to background, and if you next command doesn't work, please wait
 
+```
   cp .env.example .env
   php artisan key:generate
   php artisan migrate --seed
