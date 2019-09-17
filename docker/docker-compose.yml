@@ -63,6 +63,15 @@ services:
     working_dir: ${APP_PATH_CONTEINER_API}
     command: composer install
 
+  node:
+    image: node:alpine
+    volumes:
+      - ${APP_PATH_HOST_API}:${APP_PATH_CONTEINER_API}
+      - ${APP_PATH_HOST_WEB}:${APP_PATH_CONTEINER_WEB}
+    working_dir: ${APP_PATH_CONTEINER_WEB}
+    command: npm install
+
+
 networks:
   network:
     driver: bridge

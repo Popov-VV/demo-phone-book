@@ -13,16 +13,15 @@ docker-compose build
 docker-compose up -d
 
 docker-compose exec app bash 
+  cp .env.example .env
 ```
-composer was run to background, and if you next command doesn't work, please wait
+composer and npm installers was run to background, and if you next command doesn't work, please wait
 
 ```
-  cp .env.example .env
   php artisan key:generate
   php artisan migrate --seed
 
   cd ../web-app
-  npm install
   npm run build
 
   exit
