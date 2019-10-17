@@ -1,5 +1,5 @@
 ### Demo App
-
+Test changes
 #### Instruction
 ```
 git clone https://github.com/Axeres/demo-phone-book
@@ -15,7 +15,7 @@ docker-compose up
 
 After composer and npm installers return exit code 0 and end work, open new tab and run migration for db:
 ```
-docker-compose exec app bash 
+docker-compose exec app bash
   php artisan migrate --seed
 ```
 
