@@ -27,7 +27,7 @@
     "@vue/cli-service": "^3.11.0",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-coffee": "^0.1.0",
     "vue-cli-plugin-pug": "^1.0.7",
